@@ -18,6 +18,8 @@ jobs:
         with:
           java-version: '8'
           distribution: 'temurin'
+      - name: Checkout
+        run: git checkout adfceaab120661e78ee7608f3335eaf863693a38
       - name: Test
         run: mvn -pl service/configuration test -Dtest=com.alibaba.citrus.service.configuration.PropertyPlaceholderTests#defaultValue
         
@@ -30,6 +32,8 @@ jobs:
         with:
           java-version: '8'
           distribution: 'temurin'
+      - name: Checkout
+        run: git checkout adfceaab120661e78ee7608f3335eaf863693a38
       - name: Test
         run: mvn -pl service/configuration edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=com.alibaba.citrus.service.configuration.PropertyPlaceholderTests
         
