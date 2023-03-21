@@ -1,0 +1,35 @@
+# https://github.com/webx/citrus,
+# adfceaab120661e78ee7608f3335eaf863693a38,
+# service/configuration,
+# com.alibaba.citrus.service.configuration.PropertyPlaceholderTests.defaultValue,
+# ID,,,
+# test does not fail with -Dtest=PropertyPlaceholderTests#defaultValue but fails with -Dtest=PropertyPlaceholderTests  
+
+name: Test:PropertyPlaceholderTests.defaultValue
+run-name: Known Flaky test
+on: [push]
+jobs:
+  Test_Without_Nondex_Shuffling:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+      - name: Test
+        run: mvn -pl service/configuration test -Dtest=PropertyPlaceholderTests#defaultValue
+        
+  Test_With_Nondex_Shuffling:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+      - name: Test
+        run: mvn -pl service/configuration edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=PropertyPlaceholderTests
+        
